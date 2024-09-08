@@ -6,12 +6,10 @@ public class VoteOption {
 
     private String caption;
     private int presentationOrder;
-    private List<Vote> votes;
 
-    public VoteOption(String caption, int presentationOrder, List<Vote> votes) {
+    public VoteOption(String caption, int presentationOrder) {
         this.caption = caption;
         this.presentationOrder = presentationOrder;
-        this.votes = votes;
     }
 
     public VoteOption() {}
@@ -30,13 +28,5 @@ public class VoteOption {
 
     public void setPresentationOrder(int presentationOrder) {
         this.presentationOrder = presentationOrder;
-    }
-
-    public List<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
     }
 }

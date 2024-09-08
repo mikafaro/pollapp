@@ -5,11 +5,13 @@ import java.time.Instant;
 public class Vote {
 
     private Instant publishedAt;
-    private User user;
+    private Integer pollId;
+    private VoteOption option;
 
-    public Vote(User user) {
+    public Vote(Integer pollId, VoteOption option) {
         this.publishedAt = Instant.now();
-        this.user = user;
+        this.pollId = pollId;
+        this.option = option;
     }
 
     public Vote() {}
@@ -22,11 +24,19 @@ public class Vote {
         this.publishedAt = Instant.now();
     }
 
-    public User getUser() {
-        return user;
+    public VoteOption getOption() {
+        return option;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOption(VoteOption option) {
+        this.option = option;
+    }
+
+    public Integer getPollId() {
+        return pollId;
+    }
+
+    public void setPollId(Integer pollId) {
+        this.pollId = pollId;
     }
 }

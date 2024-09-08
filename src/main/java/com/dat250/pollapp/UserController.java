@@ -3,6 +3,7 @@ package com.dat250.pollapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,6 +23,9 @@ public class UserController {
 
     @PostMapping
     public User newUser(@RequestBody User user) {
+        if (user.getVotes() == null) {
+            user.setVotes(new ArrayList<>());
+        }
         manager.addUser(user);
         return user;
     }

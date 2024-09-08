@@ -54,4 +54,8 @@ public class PollManager {
         return pollMap.containsKey(id);
     }
 
+    public VoteOption getVoteOption(Integer pollId, int optionId) {
+        return pollMap.get(pollId).getOptions().get(optionId);
+    }
+
 }
