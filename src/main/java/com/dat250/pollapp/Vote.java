@@ -5,9 +5,11 @@ import java.time.Instant;
 public class Vote {
 
     private Instant publishedAt;
+    private User user;
 
-    public Vote(Instant publishedAt) {
-        this.publishedAt = publishedAt;
+    public Vote(User user) {
+        this.publishedAt = Instant.now();
+        this.user = user;
     }
 
     public Vote() {}
@@ -16,7 +18,15 @@ public class Vote {
         return publishedAt;
     }
 
-    public void setPublishedAt(Instant publishedAt) {
-        this.publishedAt = publishedAt;
+    public void setPublishedAt() {
+        this.publishedAt = Instant.now();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
