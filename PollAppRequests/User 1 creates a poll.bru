@@ -1,0 +1,21 @@
+meta {
+  name: User 1 creates a poll
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/polls
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "question" : "Is this poll great?",
+    "options" : [
+      { "caption" : "yes", "presentationOrder" : 1, "votes" : []},
+      { "caption" : "no" , "presentationOrder" : 2, "votes" : []}
+    ]
+  }
+}

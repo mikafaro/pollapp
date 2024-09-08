@@ -1,25 +1,38 @@
 package com.dat250.pollapp;
 
+
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Poll {
 
+    private static final AtomicInteger counter = new AtomicInteger(0);
+
+    private Integer id;
     private String question;
     private Instant publishedAt;
     private Instant validUntil;
     private List<VoteOption> options;
-    private User creator;
 
-    public Poll(String question, Instant publishedAt, Instant validUntil, List<VoteOption> options, User creator) {
+    public Poll(String question, List<VoteOption> options) {
+        this.id = counter.incrementAndGet();
         this.question = question;
-        this.publishedAt = publishedAt;
-        this.validUntil = validUntil;
         this.options = options;
-        this.creator = creator;
+        this.validUntil = java.time.Instant.now().plusSeconds(1000000);
+        this.publishedAt = java.time.Instant.now();
+
     }
 
     public Poll() {}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = counter.incrementAndGet();
+    }
 
     public String getQuestion() {
         return question;
@@ -33,16 +46,16 @@ public class Poll {
         return publishedAt;
     }
 
-    public void setPublishedAt(Instant publishedAt) {
-        this.publishedAt = publishedAt;
+    public void setPublishedAt() {
+        this.publishedAt = java.time.Instant.now();
     }
 
     public Instant getValidUntil() {
         return validUntil;
     }
 
-    public void setValidUntil(Instant validUntil) {
-        this.validUntil = validUntil;
+    public void setValidUntil() {
+        this.validUntil = java.time.Instant.now().plusSeconds(1000000);
     }
 
     public List<VoteOption> getOptions() {
@@ -53,11 +66,4 @@ public class Poll {
         this.options = options;
     }
 
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
 }

@@ -6,6 +6,10 @@ public class Vote {
 
     private Instant publishedAt;
 
+    public Vote(Instant publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
     public Vote() {}
 
     public Instant getPublishedAt() {

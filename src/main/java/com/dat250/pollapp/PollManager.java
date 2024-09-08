@@ -11,7 +11,7 @@ import java.util.Map;
 public class PollManager {
 
     private Map<String, User> userMap;
-    private Map<String, Poll> pollMap;
+    private Map<Integer, Poll> pollMap;
 
     public PollManager() {
         this.userMap = new HashMap<>();
@@ -28,6 +28,18 @@ public class PollManager {
 
     public List<User> getUsers() {
         return new ArrayList<>(userMap.values());
+    }
+
+    public void addPoll(Poll poll) {
+        pollMap.put(poll.getId(), poll);
+    }
+
+    public Poll getPoll(Integer id) {
+        return pollMap.get(id);
+    }
+
+    public List<Poll> getPolls() {
+        return new ArrayList<>(pollMap.values());
     }
 
 }

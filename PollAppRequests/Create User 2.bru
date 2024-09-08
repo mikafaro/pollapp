@@ -1,11 +1,18 @@
 meta {
   name: Create User 2
   type: http
-  seq: 3
+  seq: 4
 }
 
 post {
-  url: https://localhost:8080/users
-  body: none
+  url: http://localhost:8080/users
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "username" : "Mika",
+    "email" : "myfakeemail@fake.com"
+  }
 }
