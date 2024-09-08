@@ -1,0 +1,24 @@
+meta {
+  name: User 2 creates a poll
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8080/polls
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "question" : "What is your favourite dinosaur?",
+    "options" : [
+      { "caption" : "Diplodocus", "presentationOrder" : 1, "votes" : []},
+      { "caption" : "Triceratops" , "presentationOrder" : 2, "votes" : []},
+      { "caption" : "Tyrannosaurus Rex" , "presentationOrder" : 3, "votes" : []},
+      { "caption" : "Pterodactyl" , "presentationOrder" : 4, "votes" : []},
+      { "caption" : "Other" , "presentationOrder" : 5, "votes" : []}
+    ]
+  }
+}

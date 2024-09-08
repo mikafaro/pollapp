@@ -30,8 +30,16 @@ public class PollManager {
         return new ArrayList<>(userMap.values());
     }
 
+    public Boolean containsUser(String username) {
+        return userMap.containsKey(username);
+    }
+
     public void addPoll(Poll poll) {
         pollMap.put(poll.getId(), poll);
+    }
+
+    public void deletePoll(Integer id) {
+        pollMap.remove(id);
     }
 
     public Poll getPoll(Integer id) {
@@ -40,6 +48,10 @@ public class PollManager {
 
     public List<Poll> getPolls() {
         return new ArrayList<>(pollMap.values());
+    }
+
+    public Boolean containsPoll(Integer id) {
+        return pollMap.containsKey(id);
     }
 
 }

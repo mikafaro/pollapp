@@ -1,6 +1,7 @@
 package com.dat250.pollapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +25,21 @@ public class PollController {
         return poll;
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePoll(@PathVariable Integer id) {
+        if (manager.containsPoll(id)) {
+            manager.deletePoll(id);
+            return ResponseEntity.ok("Poll deleted");
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/{id}")
-    public Poll getPoll(@PathVariable Integer id) {
-        return manager.getPoll(id);
+    public ResponseEntity<Poll> getPoll(@PathVariable Integer id) {
+        if (manager.containsPoll(id)) {
+            return ResponseEntity.ok(manager.getPoll(id));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
