@@ -12,6 +12,7 @@ public class PollManager {
 
     private Map<String, User> userMap;
     private Map<Integer, Poll> pollMap;
+    private Map<Integer, List<Vote>> voteMap;
 
     public PollManager() {
         this.userMap = new HashMap<>();
@@ -56,6 +57,15 @@ public class PollManager {
 
     public VoteOption getVoteOption(Integer pollId, int optionId) {
         return pollMap.get(pollId).getOptions().get(optionId);
+    }
+
+    public void addVote(Integer pollId, Vote vote) {
+        List<Vote> votes = voteMap.get(pollId);
+        votes.add(vote);
+    }
+
+    public List<Vote> getVotes(Integer pollId) {
+        return voteMap.get(pollId);
     }
 
 }

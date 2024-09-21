@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("{username}/votes")
+@RequestMapping("/votes")
 public class VoteController {
 
     private final PollManager manager;
@@ -17,28 +17,25 @@ public class VoteController {
     }
 
     @PostMapping
-    public ResponseEntity<Vote> newVote(@PathVariable String username,
-                                        @RequestParam Integer pollId,
+    public ResponseEntity<Vote> newVote(@RequestParam Integer pollId,
                                         @RequestParam int optId) {
-        if (!manager.containsUser(username)) {
-            return ResponseEntity.notFound().build();
-        }
         if (!manager.containsPoll(pollId)) {
             return ResponseEntity.notFound().build();
         }
         VoteOption opt = manager.getVoteOption(pollId, optId);
         Vote vote = new Vote(pollId, opt);
         vote.setPublishedAt();
-        manager.getUser(username).getVotes().add(vote);
+        manager.addVote(pollId, vote);
         return ResponseEntity.ok(vote);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Vote>> getUserVotes(@PathVariable String username) {
-        if (!manager.containsUser(username)) {
+    @GetMapping("/{pollId}")
+    public ResponseEntity<List<Vote>> getVotes(@PathVariable Integer pollId) {
+        if (!manager.containsPoll(pollId)) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(manager.getUser(username).getVotes());
+        List<Vote> votes = manager.getVotes(pollId);
+        return ResponseEntity.ok(votes);
     }
 
 }

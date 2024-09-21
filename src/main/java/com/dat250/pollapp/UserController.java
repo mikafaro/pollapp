@@ -23,9 +23,6 @@ public class UserController {
 
     @PostMapping
     public User newUser(@RequestBody User user) {
-        if (user.getVotes() == null) {
-            user.setVotes(new ArrayList<>());
-        }
         manager.addUser(user);
         return user;
     }
